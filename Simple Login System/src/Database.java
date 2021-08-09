@@ -11,7 +11,7 @@ public class Database {
 		
 		//Read MySQL login information from dbconfig.properties file
 		Properties prop = new Properties();
-		FileInputStream ip = new FileInputStream("C:\\Users\\chanm\\git\\StudentManagementProject_Java\\Student Management System\\src\\Resources\\dbconfig.properties");
+		FileInputStream ip = new FileInputStream("C:\\Users\\chanm\\git\\simple-login-system\\Simple Login System\\src\\resources\\dbconfig.proeperties");
 		prop.load(ip);
 		
 		try {
