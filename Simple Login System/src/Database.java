@@ -10,10 +10,15 @@ public class Database {
 	
 	private String username;
 	private String password;
+	boolean loginValid = false;
 	
 	public Database(String userInput, String passInput) {
 		this.username = userInput;
 		this.password = passInput;
+	}
+	
+	public boolean checkLoginValid() {
+		return loginValid;
 	}
 	
 	//Read database to verify entered login information
@@ -38,7 +43,7 @@ public class Database {
 			ResultSet rs = statement.executeQuery("SELECT * FROM loginsystemtable WHERE username = '" + username + "' and password = '" + password + "'");
 			System.out.println("Data retrieved");
 			if(rs.next()) {
-				System.out.println("Logged in");
+				loginValid = true;
 			}
 			else {
 				System.out.println("Login Failed");

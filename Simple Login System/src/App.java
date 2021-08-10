@@ -62,10 +62,33 @@ public class App implements ActionListener{
 		Database db = new Database(usernameInput, passwordInput);
 		try {
 			db.checkLogin();
+			if(db.checkLoginValid()) {
+				loggedIn();
+			}
+			else {
+				System.exit(0);
+			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+	}
+	
+	public static void loggedIn() {
+		JFrame loggedInFrame = new JFrame("Logged In");
+		loggedInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		loggedInFrame.setSize(300,175);
+		
+		JPanel loggedInPanel = new JPanel();
+		loggedInPanel.setLayout(null);
+		loggedInFrame.add(loggedInPanel);
+		
+		JLabel loggedInLabel = new JLabel("You're now logged in!");
+		loggedInLabel.setBounds(120,90,100,100);
+		loggedInFrame.add(loggedInLabel);
+		
+		loggedInFrame.setVisible(true);
 	}
 
 }
