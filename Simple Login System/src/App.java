@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -56,9 +57,13 @@ public class App implements ActionListener{
 	//Action Listener (loginButton)
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String usernameInput = usernameTxtField.getText();
-		String passwordInput = passwordTxtField.getText();
-		System.out.println(usernameInput + ", " + passwordInput);
+		Database db = new Database();
+		try {
+			db.checkLogin();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 }
