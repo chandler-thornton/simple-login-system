@@ -57,7 +57,9 @@ public class App implements ActionListener{
 	//Action Listener (loginButton)
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Database db = new Database();
+		String usernameInput = usernameTxtField.getText();
+		String passwordInput = passwordTxtField.getText();
+		Database db = new Database(usernameInput, passwordInput);
 		try {
 			db.checkLogin();
 		} catch (IOException e1) {

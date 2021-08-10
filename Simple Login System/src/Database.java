@@ -2,10 +2,19 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Properties;
 
 public class Database {
+	
+	private String username;
+	private String password;
+	
+	public Database(String userInput, String passInput) {
+		this.username = userInput;
+		this.password = passInput;
+	}
 	
 	//Read database to verify entered login information
 	public Connection checkLogin() throws IOException{
@@ -26,8 +35,14 @@ public class Database {
 			System.out.println("Connected");
 			
 			Statement statement = conn.createStatement();
-			statement.executeUpdate("INSERT INTO loginsystemtable" + " (username, password)" + " VALUES ('ct381779', 'Jefferson1776!')");
-			System.out.println("New user added");
+			ResultSet rs = statement.executeQuery("SELECT * FROM loginsystemtable WHERE username = '" + username + "' and password = '" + password + "'");
+			System.out.println("Data retrieved");
+			if(rs.next()) {
+				System.out.println("Logged in");
+			}
+			else {
+				System.out.println("Login Failed");
+			}
 			
 			return conn;
 		} catch(Exception e) {
